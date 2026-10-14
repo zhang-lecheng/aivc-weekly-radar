@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f7">
+  <meta name="description" content="追踪 AI Virtual Cell 领域真正改变研究问题、实验决策与证据标准的工作。">
+  <title>AIVC Research Radar</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="wordmark" href="./" aria-label="AIVC Research Radar 首页">AIVC <span>RADAR</span></a>
+    <nav aria-label="主导航">
+      <a class="active" href="#latest">本周</a>
+      <a href="#archive">论文档案</a>
+      <a href="https://github.com/zhang-lecheng/aivc-weekly-radar">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro" id="latest">
+      <div class="intro-copy">
+        <p class="eyebrow">AI VIRTUAL CELL · WEEKLY LITERATURE REVIEW</p>
+        <h1>研究问题，<br>比模型排名更重要。</h1>
+        <p class="dek">每周筛选真正改变虚拟细胞研究对象、实验决策、信息条件或证据标准的工作。</p>
+        <div class="intro-meta"><span class="live-dot"></span><span id="updated">正在读取最新一期</span><span class="meta-divider"></span><span>按问题创新性排序</span></div>
+      </div>
+      <aside class="principle" aria-label="评分原则">
+        <span class="principle-label">EDITORIAL PRINCIPLE</span>
+        <p>衡量研究带来了什么新问题，<br>而不是模型又提高了多少分。</p>
+        <a href="https://github.com/zhang-lecheng/aivc-weekly-radar/blob/master/rubric.md">评分框架 <span aria-hidden="true">↗</span></a>
+      </aside>
+    </section>
+
+    <section class="metrics" aria-label="本期概况">
+      <div><span class="metric-label">本期论文</span><strong id="count-total">—</strong><span class="metric-note">主榜与观察区</span></div>
+      <div><span class="metric-label">主榜收录</span><strong id="count-main">—</strong><span class="metric-note">有实证支撑的新问题</span></div>
+      <div><span class="metric-label">最高创新分</span><strong id="top-score">—</strong><span class="metric-note">满分 100</span></div>
+      <div class="metric-chart"><span class="metric-label">评分维度</span><div class="score-axes"><span>问题转移</span><i style="--w:100%"></i><span>决策价值</span><i style="--w:66%"></i><span>证据强度</span><i style="--w:50%"></i></div></div>
+    </section>
+
+    <section class="issue-heading">
+      <div><p class="eyebrow">LATEST ISSUE <span id="issue-date"></span></p><h2>值得追踪的研究</h2></div>
+      <a id="issue-link" class="text-link" href="https://github.com/zhang-lecheng/aivc-weekly-radar/tree/master/weekly">阅读完整周报 ↗</a>
+    </section>
+    <section id="featured" class="featured" aria-live="polite"></section>
+
+    <section class="archive" id="archive">
+      <div class="archive-heading">
+        <div><p class="eyebrow">PAPER ARCHIVE</p><h2>论文档案</h2></div>
+        <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索标题、主题或摘要" autocomplete="off"></label>
+      </div>
+      <div class="controls">
+        <div class="segmented" role="group" aria-label="论文范围">
+          <button class="selected" data-scope="all">全部</button><button data-scope="main">主榜</button><button data-scope="observe">观察区</button>
+        </div>
+        <label class="select-wrap"><span>研究主题</span><select id="category"><option value="all">全部主题</option></select></label>
+        <label class="select-wrap"><span>排序</span><select id="sort"><option value="score">创新分由高到低</option><option value="date">最近收录</option></select></label>
+        <span id="result-count" class="result-count"></span>
+      </div>
+      <div class="paper-list" id="paper-list" aria-live="polite"></div>
+      <div id="empty" class="empty" hidden>没有符合当前筛选条件的论文。</div>
+    </section>
+
+    <section class="issues" aria-label="历期周报">
+      <div class="issues-title"><p class="eyebrow">WEEKLY ARCHIVE</p><h2>历期周报</h2></div>
+      <div id="issue-list" class="issue-list"></div>
+    </section>
+  </main>
+
+  <footer>
+    <span>AIVC RESEARCH RADAR</span><span>问题创新性 · 证据纪律 · 每周更新</span><a href="https://github.com/zhang-lecheng/aivc-weekly-radar">数据与方法 ↗</a>
+  </footer>
+  <script src="./app.js" defer></script>
+</body>
+</html>

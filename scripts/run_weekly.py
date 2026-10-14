@@ -87,7 +87,8 @@ def publish(repo):
     if not token: raise RuntimeError("missing GITHUB_TOKEN/GH_TOKEN; publication stopped before commit")
     # Token is passed through git credential helper, never command arguments or remote URL.
     env = os.environ.copy(); env["GIT_TERMINAL_PROMPT"] = "0"
-    subprocess.run(["git", "add", "README.md", "INDEX.md", "weekly", "data", "sources.md", "rubric.md", "scripts"], cwd=ROOT, check=True)
+    subprocess.run(["python3", str(ROOT / "scripts/build_dashboard.py")], cwd=ROOT, check=True)
+    subprocess.run(["git", "add", "README.md", "INDEX.md", "weekly", "data", "sources.md", "rubric.md", "scripts", "docs"], cwd=ROOT, check=True)
     subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT, check=False)
     subprocess.run(["git", "commit", "-m", f"weekly AIVC radar: {DATE}"], cwd=ROOT, check=False)
     remote = f"https://github.com/{repo}.git"
@@ -99,7 +100,8 @@ def publish(repo):
 
 def publish_state(repo):
     """Commit the success checkpoint only after the content push succeeded."""
-    subprocess.run(["git", "add", "data/run-state.json"], cwd=ROOT, check=True)
+    subprocess.run(["python3", str(ROOT / "scripts/build_dashboard.py")], cwd=ROOT, check=True)
+    subprocess.run(["git", "add", "data/run-state.json", "docs/dashboard.json"], cwd=ROOT, check=True)
     subprocess.run(["git", "commit", "-m", f"record successful AIVC radar run: {DATE}"], cwd=ROOT, check=False)
     env = os.environ.copy(); env["GIT_TERMINAL_PROMPT"] = "0"
     cred = subprocess.run(["git", "-c", "credential.helper=cache --timeout=60", "push", "origin", "HEAD"], cwd=ROOT, env={**env, "GIT_ASKPASS": str(ROOT/"scripts/git-askpass.sh")}, check=False)

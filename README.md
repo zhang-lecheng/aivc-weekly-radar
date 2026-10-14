@@ -1,5 +1,7 @@
 # AIVC Weekly Radar
 
+**公开看板：** [zhang-lecheng.github.io/aivc-weekly-radar](https://zhang-lecheng.github.io/aivc-weekly-radar/)
+
 每周追踪 AI Virtual Cell（AIVC）中真正改变研究问题或实验范式的工作。这里的分数衡量**问题创新性**，不是模型大小、论文声望或同一 benchmark 的 SOTA。
 
 ## 运行
@@ -18,6 +20,7 @@ python3 scripts/run_weekly.py --publish --repo OWNER/REPO
 - [`data/papers.jsonl`](data/papers.jsonl)：一篇论文一行的可机器读取记录
 - [`rubric.md`](rubric.md)：评分规则与反例
 - [`sources.md`](sources.md)：查询式、证据纪律和运行记录
+- [`docs/`](docs/)：GitHub Pages 学术风格看板；每次成功周更同步最新论文、评分与历期链接
 
 主榜单最多 8 篇，观察区最多 4 篇。没有足够证据时发布短报，不为了凑数提升普通 SOTA 论文。
 

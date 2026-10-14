@@ -97,6 +97,14 @@ def publish(repo):
     cred = subprocess.run(["git", "-c", "credential.helper=cache --timeout=60", "push", "-u", "origin", "HEAD"], cwd=ROOT, env={**env, "GIT_ASKPASS": str(ROOT/"scripts/git-askpass.sh")}, check=False)
     if cred.returncode: raise RuntimeError("git push failed; state was not advanced")
 
+def publish_state(repo):
+    """Commit the success checkpoint only after the content push succeeded."""
+    subprocess.run(["git", "add", "data/run-state.json"], cwd=ROOT, check=True)
+    subprocess.run(["git", "commit", "-m", f"record successful AIVC radar run: {DATE}"], cwd=ROOT, check=False)
+    env = os.environ.copy(); env["GIT_TERMINAL_PROMPT"] = "0"
+    cred = subprocess.run(["git", "-c", "credential.helper=cache --timeout=60", "push", "origin", "HEAD"], cwd=ROOT, env={**env, "GIT_ASKPASS": str(ROOT/"scripts/git-askpass.sh")}, check=False)
+    if cred.returncode: raise RuntimeError("success checkpoint push failed; content is published but checkpoint remains local")
+
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument("--repo"); ap.add_argument("--since"); ap.add_argument("--screened-json"); ap.add_argument("--dry-run", action="store_true"); ap.add_argument("--publish", action="store_true"); a=ap.parse_args()
     state=load_json(STATE,{}) ; since=a.since or state.get("last_successful_run") or (dt.date.today()-dt.timedelta(days=14)).isoformat()
@@ -119,5 +127,6 @@ def main():
         if not a.repo: raise SystemExit("--repo is required with --publish")
         publish(a.repo)
         state.update({"last_successful_run":DATE,"last_attempt":DATE,"last_commit":subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True).strip()}); STATE.write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\n")
+        publish_state(a.repo)
     else: state["last_attempt"]=DATE; STATE.write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\n") if not a.dry_run else None
 if __name__ == "__main__": main()

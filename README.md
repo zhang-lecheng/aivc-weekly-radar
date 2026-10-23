@@ -1,29 +1,43 @@
 # AIVC Weekly Radar
 
-**公开看板：** [zhang-lecheng.github.io/aivc-weekly-radar](https://zhang-lecheng.github.io/aivc-weekly-radar/)
+**English** | [简体中文](README.zh-CN.md)
 
-每周追踪 AI Virtual Cell（AIVC）中真正改变研究问题或实验范式的工作。这里的分数衡量**问题创新性**，不是模型大小、论文声望或同一 benchmark 的 SOTA。
+**[Explore the research dashboard](https://zhang-lecheng.github.io/aivc-weekly-radar/)**
 
-## 运行
+A weekly reading radar for AI Virtual Cell (AIVC) research that changes scientific questions, experimental decisions, or evaluation practices. Innovation scores reflect these changes rather than model size, venue prestige, or gains on an existing benchmark.
+
+## Updates and reading
+
+DeepSeek Harness runs every **Monday at 09:00, Asia/Shanghai**, using `westlake/deepseek-flash`. Each issue includes up to eight featured papers and four watchlist entries, with Chinese summaries, score breakdowns, evidence limitations, and direct source links. Quiet weeks receive a short issue rather than a padded ranking.
+
+- [Public dashboard](https://zhang-lecheng.github.io/aivc-weekly-radar/): featured papers, search, filters, and issue archives.
+- [Issue index](INDEX.md) and [weekly reports](weekly/): findings and editorial judgments for each week.
+- [Scoring rubric](rubric.md) and [sources](sources.md): selection criteria, queries, and evidence requirements.
+- [Structured paper archive](data/papers.jsonl): one machine-readable record per paper.
+
+Weekly reports and the dashboard are currently in Chinese. The repository overview is available in both languages through the links above.
+
+## Research focus
+
+The radar supports AI4Science and virtual-cell research, with an emphasis on functional readouts, intervention selection, multimodal information, temporal and experimental feedback, falsifiability, and audits of input contributions. Public data and computational experiments should support the main findings; collaborative wet-lab experiments can provide additional validation.
+
+## Run locally
 
 ```bash
 python3 scripts/run_weekly.py --dry-run
-python3 scripts/run_weekly.py --publish --repo OWNER/REPO
+python3 scripts/run_weekly.py --screened-json /path/to/screened.json --publish --repo OWNER/REPO
 ```
 
-发布模式从运行环境读取 `GITHUB_TOKEN`（或 `GH_TOKEN`），绝不把凭据写入提示词、文件、URL 或日志。模型筛选由 DeepSeek Harness 负责；本地脚本负责来源抓取、规范化、去重、校验和幂等提交。
+DeepSeek Harness handles screening and evidence review. Local scripts collect and normalize records, deduplicate and validate entries, regenerate dashboard data, and commit and push updates. Publishing reads `GITHUB_TOKEN` or `GH_TOKEN` from the environment. Credentials are kept out of prompts, files, remote URLs, and logs. A failed push does not advance the successful-run checkpoint.
 
-## 内容
+## Repository layout
 
-- [`INDEX.md`](INDEX.md)：按日期和创新分数索引
-- [`weekly/`](weekly/)：每周中文简报
-- [`data/papers.jsonl`](data/papers.jsonl)：一篇论文一行的可机器读取记录
-- [`rubric.md`](rubric.md)：评分规则与反例
-- [`sources.md`](sources.md)：查询式、证据纪律和运行记录
-- [`docs/`](docs/)：GitHub Pages 学术风格看板；每次成功周更同步最新论文、评分与历期链接
+| Path | Contents |
+| --- | --- |
+| `README.md` / `README.zh-CN.md` | English overview and Chinese translation, linked at the top |
+| `weekly/` / `INDEX.md` | Chinese weekly reports and their index |
+| `data/papers.jsonl` | Structured paper records |
+| `docs/` | GitHub Pages dashboard and generated data |
+| `scripts/` | Collection, validation, and publishing code |
 
-主榜单最多 8 篇，观察区最多 4 篇。没有足够证据时发布短报，不为了凑数提升普通 SOTA 论文。
-
-## 项目定位
-
-这个雷达服务于 AI4Science/虚拟细胞研究：优先寻找功能目标、实验决策、跨模态信息、时间与反馈闭环、可证伪性和输入贡献审计等新问题。湿实验合作可以增强证据，但计算分析和公开数据必须能支撑主要结论。
+Paper suggestions and corrections are welcome. Please include a direct source link and the evidence supporting your suggestion.

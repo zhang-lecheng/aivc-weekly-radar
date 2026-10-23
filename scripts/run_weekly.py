@@ -88,7 +88,7 @@ def publish(repo):
     # Token is passed through git credential helper, never command arguments or remote URL.
     env = os.environ.copy(); env["GIT_TERMINAL_PROMPT"] = "0"
     subprocess.run(["python3", str(ROOT / "scripts/build_dashboard.py")], cwd=ROOT, check=True)
-    subprocess.run(["git", "add", "README.md", "INDEX.md", "weekly", "data", "sources.md", "rubric.md", "scripts", "docs"], cwd=ROOT, check=True)
+    subprocess.run(["git", "add", "README.md", "README.zh-CN.md", "INDEX.md", "weekly", "data", "sources.md", "rubric.md", "scripts", "docs"], cwd=ROOT, check=True)
     subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT, check=False)
     subprocess.run(["git", "commit", "-m", f"weekly AIVC radar: {DATE}"], cwd=ROOT, check=False)
     remote = f"https://github.com/{repo}.git"

@@ -1,5 +1,7 @@
 # DeepSeek Harness 每周任务提示词
 
+仓库语言约定：README.md 为默认英文主页，README.zh-CN.md 为中文说明；两者顶部保留 English / 简体中文的相对链接。更新 README 时同步维护两份，不得把默认 README 改回中文。周报与看板继续使用中文。
+
 模型固定为 `westlake/deepseek-flash`。每周运行时读取本项目的 `data/run-state.json`，检索上次成功日期之后的新公开/新修订论文；首次运行取最近 14 天。先用 arXiv、Europe PMC、bioRxiv 和公开期刊页面收集候选，再核对摘要、正文、split、重复数和实验闭环。
 
 只把改变研究对象、实验/决策、信息条件、评价目标或可证伪性要求的工作放进主榜单。普通 backbone、loss、benchmark SOTA、只有观点没有证据的论文放观察区。使用 [`rubric.md`](rubric.md) 的六项分数，按 `innovation_score` 降序，主榜单最多 8 篇，观察区最多 4 篇。中文简介 100--180 字；所有数值附直接论文链接和原文位置。证据不足时降低 `evidence_strength` 和 `confidence`，不得猜测。

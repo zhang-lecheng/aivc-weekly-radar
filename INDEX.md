@@ -11,3 +11,5 @@
 - [2026-10-19](weekly/2026-10-19.md)：主榜单 6 篇；最高分：SubcellPert: Benchmarking Subcellular Perturbation Prediction（75）
 
 - [2026-11-02](weekly/2026-11-02.md)：主榜单 8 篇；最高分：Single-cell perturbation prediction near experimental reproducibility with GENESIS（86）
+
+- [2026-11-09](weekly/2026-11-09.md)：主榜单 7 篇；最高分：A low-rank decoder bottleneck bounds reliability in foundation-model perturbation prediction（79）

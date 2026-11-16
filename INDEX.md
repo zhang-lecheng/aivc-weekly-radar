@@ -13,3 +13,5 @@
 - [2026-11-02](weekly/2026-11-02.md)：主榜单 8 篇；最高分：Single-cell perturbation prediction near experimental reproducibility with GENESIS（86）
 
 - [2026-11-09](weekly/2026-11-09.md)：主榜单 7 篇；最高分：A low-rank decoder bottleneck bounds reliability in foundation-model perturbation prediction（79）
+
+- [2026-11-16](weekly/2026-11-16.md)：主榜单 7 篇；最高分：BioMeme: biological response memory for virtual cells（78）

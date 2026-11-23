@@ -15,3 +15,5 @@
 - [2026-11-09](weekly/2026-11-09.md)：主榜单 7 篇；最高分：A low-rank decoder bottleneck bounds reliability in foundation-model perturbation prediction（79）
 
 - [2026-11-16](weekly/2026-11-16.md)：主榜单 7 篇；最高分：BioMeme: biological response memory for virtual cells（78）
+
+- [2026-11-23](weekly/2026-11-23.md)：主榜单 6 篇；最高分：Averaging in gene perturbation benchmarks hides perturbation-strength variation: Consequences for model evaluation（77）
